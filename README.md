@@ -2,7 +2,7 @@
 
 This is a basic twitter app to read and compose tweets the [Twitter API](https://apps.twitter.com/).
 
-Time spent: `<Number of hours spent>`
+Time spent: `0:00`
 
 ### Features
 
@@ -28,4 +28,6 @@ Time spent: `<Number of hours spent>`
 
 ### Walkthrough
 
-![Video Walkthrough](...)
+![Video Walkthrough](Twitter.gif)
+
+GIF created with [LiceCap](http://www.cockos.com/licecap/).
