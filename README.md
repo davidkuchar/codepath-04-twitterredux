@@ -2,13 +2,17 @@
 
 This is a basic twitter app to read and compose tweets the [Twitter API](https://apps.twitter.com/).
 
-[CheepApp](https://apps.twitter.com/app/8326819)
+## Twitter App Data
 
-Consumer Key (API Key)	UD6Yfue3doPq9LWahObqzeZqK
-Consumer Secret (API Secret)	IcBd7tT8tgT0aCl3ROuxWbzKr8I6Zsa0jvqz5gjYMLU6WLV5Oa
-Access Level	Read and write (modify app permissions)
-Owner	davidkuchar
-Owner ID	23178363
+- [CheepApp](https://apps.twitter.com/app/8326819)
+- Consumer Key (API Key)
+  UD6Yfue3doPq9LWahObqzeZqK
+- Consumer Secret (API Secret)
+  IcBd7tT8tgT0aCl3ROuxWbzKr8I6Zsa0jvqz5gjYMLU6WLV5Oa
+- Owner
+  davidkuchar
+- Owner ID
+  23178363
 
 Time spent: `0:00`
 
