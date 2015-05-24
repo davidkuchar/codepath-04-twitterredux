@@ -30,6 +30,12 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>TwitterConsumerKey</key>
+	<string>UD6Yfue3doPq9LWahObqzeZqK</string>
+	<key>TwitterConsumerSecret</key>
+	<string>IcBd7tT8tgT0aCl3ROuxWbzKr8I6Zsa0jvqz5gjYMLU6WLV5Oa</string>
+	<key>TwitterBaseURL</key>
+	<string>https://api.twitter.com</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
