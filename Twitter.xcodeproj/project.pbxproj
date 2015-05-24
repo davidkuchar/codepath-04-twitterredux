@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3AD644ECB73C32B5D86A01C6 /* Pods_Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145AF9429E319197F6C7AE45 /* Pods_Twitter.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		55177EAE1B0AD1F000FF20BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55177EAD1B0AD1F000FF20BC /* AppDelegate.swift */; };
 		55177EB01B0AD1F000FF20BC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55177EAF1B0AD1F000FF20BC /* ViewController.swift */; };
 		55177EB31B0AD1F000FF20BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55177EB11B0AD1F000FF20BC /* Main.storyboard */; };
@@ -15,6 +14,7 @@
 		55177EB81B0AD1F000FF20BC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55177EB61B0AD1F000FF20BC /* LaunchScreen.xib */; };
 		55177EC41B0AD1F000FF20BC /* TwitterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55177EC31B0AD1F000FF20BC /* TwitterTests.swift */; };
 		55C0FD121B128BB900E17125 /* TwitterClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C0FD111B128BB900E17125 /* TwitterClient.swift */; };
+		D1737896EA41F936D84FC9E7 /* libPods-Twitter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 490CC241E7242207B3EBBAC8 /* libPods-Twitter.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,7 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		145AF9429E319197F6C7AE45 /* Pods_Twitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Twitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		490CC241E7242207B3EBBAC8 /* libPods-Twitter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Twitter.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		55177EA81B0AD1F000FF20BC /* Twitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55177EAC1B0AD1F000FF20BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55177EAD1B0AD1F000FF20BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -50,7 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3AD644ECB73C32B5D86A01C6 /* Pods_Twitter.framework in Frameworks */,
+				D1737896EA41F936D84FC9E7 /* libPods-Twitter.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,7 +152,7 @@
 		E468706B1231874423437097 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				145AF9429E319197F6C7AE45 /* Pods_Twitter.framework */,
+				490CC241E7242207B3EBBAC8 /* libPods-Twitter.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -168,7 +168,6 @@
 				55177EA41B0AD1F000FF20BC /* Sources */,
 				55177EA51B0AD1F000FF20BC /* Frameworks */,
 				55177EA61B0AD1F000FF20BC /* Resources */,
-				68EBAA80888C21EE632A3863 /* Embed Pods Frameworks */,
 				C59272ABB1AFCE2DBF3DF9C9 /* Copy Pods Resources */,
 			);
 			buildRules = (
@@ -269,21 +268,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		68EBAA80888C21EE632A3863 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Twitter/Pods-Twitter-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C59272ABB1AFCE2DBF3DF9C9 /* Copy Pods Resources */ = {

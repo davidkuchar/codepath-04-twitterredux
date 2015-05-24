@@ -8,22 +8,22 @@
 
 import UIKit
 
+let twitterBaseURLString = NSBundle.mainBundle().objectForInfoDictionaryKey("TwitterBaseURL")
+let twitterConsumerKey = NSBundle.mainBundle().objectForInfoDictionaryKey("TwitterConsumerKey")
+let twitterConsumerSecret = NSBundle.mainBundle().objectForInfoDictionaryKey("TwitterConsumerSecret")
+let twitterBaseURL = NSURL(string: twitterBaseURLString)
 
 class TwitterClient: BDBOAuth1RequestOperationManager {
    
-    class var sharedInstance: TwitterClient {
-
-        let twitterBaseURLString = NSBundle.mainBundle().objectForInfoDictionaryKey("TwitterBaseURL")
-        let twitterConsumerKey = NSBundle.mainBundle().objectForInfoDictionaryKey("TwitterConsumerKey")
-        let twitterConsumerSecret = NSBundle.mainBundle().objectForInfoDictionaryKey("TwitterConsumerSecret")
+    class func sharedInstance() -> TwitterClient {
         
-        let twitterBaseURL = NSURL(string: twitterBaseURLString)
-        
-        return TwitterClient(
-            baseURL: twitterBaseURL,
-            consumerKey: twitterConsumerKey,
-            consumerSecret: twitterConsumerSecret
-        )
+        struct Static {
+            static let instance = TwitterClient(
+                baseURL: twitterBaseURL,
+                consumerKey: twitterConsumerKey,
+                consumerSecret: twitterConsumerSecret
+            )
+        }
+        return Static.instance
     }
-    
 }
