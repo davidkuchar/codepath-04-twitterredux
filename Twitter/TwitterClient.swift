@@ -68,6 +68,7 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
                 // println("Got current user: \(response)")
                 
                 var user = User(dictionary: response as! NSDictionary)
+                User.currentUser = user
                 
                 println("Got current user: \(user.name)")
                 
