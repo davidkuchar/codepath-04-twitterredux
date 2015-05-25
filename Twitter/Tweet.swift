@@ -13,13 +13,28 @@ class Tweet: NSObject {
     var text: String?
     var createdAtString: String?
     var createdAt: NSDate?
+    var retweetedByUser: User?
     var dictionary: NSDictionary
     
     init(dictionary: NSDictionary) {
         self.dictionary = dictionary
         
-        user = User(dictionary: dictionary["user"] as! NSDictionary)
-        text = dictionary["text"] as? String
+//        println(dictionary)
+        
+        if let retweetedDictionary = dictionary["retweeted_status"] as? NSDictionary {
+            
+//            println("retweeted by: \(retweetedDictionary)")
+            
+            user = User(dictionary: retweetedDictionary["user"] as! NSDictionary)
+            text = retweetedDictionary["text"] as? String
+            retweetedByUser = User(dictionary: dictionary["user"] as! NSDictionary)
+            
+            println("tweet by \(user!.name). retweeted by \(retweetedByUser!.name)")
+        } else {
+            user = User(dictionary: dictionary["user"] as! NSDictionary)
+            text = dictionary["text"] as? String
+        }
+        
         createdAtString = dictionary["created_at"] as? String
         
         var formatter = NSDateFormatter()

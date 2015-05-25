@@ -26,6 +26,21 @@ class TweetCell: UITableViewCell {
     
     var tweet: Tweet! {
         didSet {
+            if let retweetedByUser = tweet.retweetedByUser {
+                retweetedLabel.text = "\(retweetedByUser.name!) retweeted"
+                retweetedLabel.hidden = false
+                userImageTopConstraint.constant = 31
+                userNameTopConstraint.constant = 31
+                userTwitterHandleTopConstraint.constant = 31
+                timeSinceCreatedTopConstraint.constant = 31
+            } else {
+                retweetedLabel.hidden = true
+                userImageTopConstraint.constant = 8
+                userNameTopConstraint.constant = 8
+                userTwitterHandleTopConstraint.constant = 8
+                timeSinceCreatedTopConstraint.constant = 8
+            }
+            
             if let user = tweet.user {
                 userImage.setImageWithURL(NSURL(string: user.profileImageUrl!))
                 userNameLabel.text = user.name
@@ -33,7 +48,6 @@ class TweetCell: UITableViewCell {
                     userTwitterHandleLabel.text = "@\(userTwitterHandle)"
                 }
             }
-            
             
 //
 //            hoursFrom(
@@ -43,10 +57,7 @@ class TweetCell: UITableViewCell {
 //            timeSinceCreatedLabel.text = tweet.createdAt
             tweetMessageLabel.text = tweet.text
             
-            userImageTopConstraint.constant = 8
-            userNameTopConstraint.constant = 8
-            userTwitterHandleTopConstraint.constant = 8
-            timeSinceCreatedTopConstraint.constant = 8
+            
         }
     }
     
@@ -57,7 +68,13 @@ class TweetCell: UITableViewCell {
         userImage.layer.cornerRadius = 3
         userImage.clipsToBounds = true
         
-//        userNameLabel.preferredMaxLayoutWidth = nameLabel.frame.size.width
+//        tweetMessageLabel.preferredMaxLayoutWidth = tweetMessageLabel.frame.size.width
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+//        tweetMessageLabel.preferredMaxLayoutWidth = tweetMessageLabel.frame.size.width
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
