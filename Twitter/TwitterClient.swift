@@ -25,11 +25,26 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
                 consumerSecret: twitterConsumerSecret
             )
         }
-//        
-//        println("TwitterConsumerKey \(Static.twitterConsumerKey)")
-//        println("TwitterConsumerSecret \(Static.twitterConsumerSecret)")
         
         return Static.instance
+    }
+    
+    func homeTimelineWithParams(params: NSDictionary?, completion: (tweets: [Tweet]?, error: NSError?) -> ()) {
+        
+        GET("1.1/statuses/home_timeline.json", parameters: params, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+            
+            // println("Got home timeline: \(response)")
+            
+            var tweets = Tweet.tweetsWithArray(response as! [NSDictionary])
+
+            completion(tweets: tweets, error: nil)
+        
+        }, failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+            println("Error getting home timeline: \(error)")
+            
+            completion(tweets: nil, error: error)
+        })
+
     }
     
     func loginWithCompletion(completion: (user: User?, error: NSError?) -> ()) {
@@ -80,20 +95,6 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
                 self.loginCompletion?(user: nil, error: error)
             })
             
-//            
-//            TwitterClient.sharedInstance().GET("1.1/statuses/home_timeline.json", parameters: nil, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
-//                
-//                // println("Got home timeline: \(response)")
-//                
-//                var tweets = Tweet.tweetsWithArray(response as! [NSDictionary])
-//                
-//                for tweet in tweets {
-//                    println("Tweet: \(tweet.text), Date: \(tweet.createdAt)")
-//                }
-//                
-//                }, failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
-//                    println("Error getting home timeline: \(error)")
-//            })
             
         
         }) { (error: NSError!) -> Void in
