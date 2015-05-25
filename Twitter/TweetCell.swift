@@ -82,11 +82,9 @@ class TweetCell: UITableViewCell {
     
     @IBAction func onRetweet(sender: AnyObject) {
         println("retweet!")
-
     }
     
     @IBAction func onFavorite(sender: AnyObject) {
         println("favorite!")
-
     }
 }
