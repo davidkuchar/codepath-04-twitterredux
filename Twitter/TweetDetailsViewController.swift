@@ -20,26 +20,31 @@ class TweetDetailsViewController: UIViewController {
     @IBOutlet weak var numberOfRetweetsLabel: UILabel!
     @IBOutlet weak var numberOfFavoritesLabel: UILabel!
     
-    var tweet: Tweet! {
-        didSet {
-            if let retweetedByUser = tweet.retweetedByUser {
+    @IBOutlet weak var userImageTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var userNameTopConstraint: NSLayoutConstraint!
+    
+    var tweet: Tweet?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+        
+        if tweet != nil {
+            if let retweetedByUser = tweet!.retweetedByUser {
                 retweetedLabel.text = "\(retweetedByUser.name!) retweeted"
                 retweetedLabel.hidden = false
                 retweetedImage.hidden = false
-//                userImageTopConstraint.constant = 31
-//                userNameTopConstraint.constant = 31
-//                userTwitterHandleTopConstraint.constant = 31
-//                timeSinceCreatedTopConstraint.constant = 31
+                 userImageTopConstraint.constant = 31
+                 userNameTopConstraint.constant = 37
             } else {
                 retweetedLabel.hidden = true
                 retweetedImage.hidden = true
-//                userImageTopConstraint.constant = 8
-//                userNameTopConstraint.constant = 8
-//                userTwitterHandleTopConstraint.constant = 8
-//                timeSinceCreatedTopConstraint.constant = 8
+                userImageTopConstraint.constant = 8
+                userNameTopConstraint.constant = 14
             }
             
-            if let user = tweet.user {
+            if let user = tweet!.user {
                 userImage.setImageWithURL(NSURL(string: user.profileImageUrl!))
                 userNameLabel.text = user.name
                 if let userTwitterHandle = user.screenname {
@@ -47,18 +52,11 @@ class TweetDetailsViewController: UIViewController {
                 }
             }
             
-            dateTimeCreatedLabel.text =  tweet.timeSinceCreated()
-            tweetMessageLabel.text = tweet.text
-            numberOfRetweetsLabel.text = String(tweet.retweets!)
-            numberOfFavoritesLabel.text = String(tweet.favorites!)
+            dateTimeCreatedLabel.text =  tweet!.dateTimeCreated()
+            tweetMessageLabel.text = tweet!.text
+            numberOfRetweetsLabel.text = String(tweet!.retweets!)
+            numberOfFavoritesLabel.text = String(tweet!.favorites!)
         }
-    }
-
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {

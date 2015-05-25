@@ -65,6 +65,14 @@ class Tweet: NSObject {
         }
     }
     
+    func dateTimeCreated() -> String {
+        let dateString = NSDateFormatter.localizedStringFromDate(
+            createdAt!,
+            dateStyle: .ShortStyle,
+            timeStyle: .ShortStyle)
+        return dateString
+    }
+    
     class func tweetsWithArray(array: [NSDictionary]) -> [Tweet] {
         
         var tweets = [Tweet]()
