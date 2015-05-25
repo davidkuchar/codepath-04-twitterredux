@@ -49,28 +49,7 @@ class TweetCell: UITableViewCell {
                 }
             }
             
-            let elapsedTime = NSDate().timeIntervalSinceDate(tweet.createdAt!) as NSTimeInterval
-            
-            switch elapsedTime {
-            case 0...60:
-                let t = Int(round(elapsedTime))
-                timeSinceCreatedLabel.text = "\(t)s"
-            case 60...3600:
-                let t = Int(round(elapsedTime/60))
-                timeSinceCreatedLabel.text = "\(t)m"
-            case 3600...86400:
-                let t = Int(round(elapsedTime/3600))
-                timeSinceCreatedLabel.text = "\(t)h"
-            default:
-                let dateString = NSDateFormatter.localizedStringFromDate(
-                    tweet.createdAt!,
-                    dateStyle: .ShortStyle,
-                    timeStyle: .NoStyle)
-                timeSinceCreatedLabel.text = dateString
-            }
-            
-            println(elapsedTime)
-
+            timeSinceCreatedLabel.text =  tweet.timeSinceCreated()
             tweetMessageLabel.text = tweet.text
         }
     }
@@ -95,5 +74,19 @@ class TweetCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    @IBAction func onReply(sender: AnyObject) {
+        println("reply!")
+    }
+    
+    @IBAction func onRetweet(sender: AnyObject) {
+        println("retweet!")
+
+    }
+    
+    @IBAction func onFavorite(sender: AnyObject) {
+        println("favorite!")
+
     }
 }
