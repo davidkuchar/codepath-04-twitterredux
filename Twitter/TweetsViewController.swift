@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, TweetCellDelegate {
 
     var tweets: [Tweet]?
     
@@ -67,19 +67,26 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         var cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as! TweetCell
         
         cell.tweet = tweets?[indexPath.row]
+        cell.delegate = self
         
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as! TweetCell
+//        var cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as! TweetCell
         
         self.performSegueWithIdentifier("tweetDetailSegue", sender: indexPath)
     }
     
     @IBAction func onLogout(sender: AnyObject) {
         User.currentUser?.logout()
+    }
+    
+    func onReplyFromTweetCell(tweetCell: TweetCell) {
+        let indexPath = tableView.indexPathForCell(tweetCell)!
+        
+        performSegueWithIdentifier("newTweetSegue", sender: indexPath)
     }
 
     // MARK: - Navigation
@@ -94,6 +101,12 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
 
             if let tweetDetailsViewContoller = segue.destinationViewController as? TweetDetailsViewController {
                 tweetDetailsViewContoller.tweet = tweets![indexPath.row]
+            }
+        } else if segue.identifier == "newTweetSegue" {
+            let indexPath = sender as! NSIndexPath
+            
+            if let composeTweetViewContoller = segue.destinationViewController as? ComposeTweetViewController {
+                composeTweetViewContoller.replyToTweet = tweets![indexPath.row]
             }
         }
     }

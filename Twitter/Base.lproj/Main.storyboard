@@ -463,7 +463,7 @@
                     <navigationItem key="navigationItem" title="Tweet" id="y8J-oS-SJ3">
                         <barButtonItem key="rightBarButtonItem" title="Reply" id="wTF-as-60t">
                             <connections>
-                                <segue destination="gEh-7H-K6f" kind="push" id="fFa-9v-9fy"/>
+                                <segue destination="gEh-7H-K6f" kind="push" identifier="newTweetFromDetailsSegue" id="fFa-9v-9fy"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

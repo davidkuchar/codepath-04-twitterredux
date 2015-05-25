@@ -66,24 +66,36 @@ class TweetDetailsViewController: UIViewController {
     
     @IBAction func onReply(sender: AnyObject) {
         println("reply!")
+        
+        performSegueWithIdentifier("newTweetFromDetailsSegue", sender: nil)
     }
     
     @IBAction func onRetweet(sender: AnyObject) {
         println("retweet!")
+        
+        tweet?.retweet()
     }
     
     @IBAction func onFavorite(sender: AnyObject) {
         println("favorite!")
+        
+        tweet?.createFavorite()
     }
     
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "newTweetFromDetailsSegue" {
+            if let composeTweetViewContoller = segue.destinationViewController as? ComposeTweetViewController {
+                composeTweetViewContoller.replyToTweet = tweet
+            }
+        }
     }
-    */
+
 
 }

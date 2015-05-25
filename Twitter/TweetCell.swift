@@ -8,6 +8,10 @@
 
 import UIKit
 
+@objc protocol TweetCellDelegate {
+    optional func onReplyFromTweetCell(tweetCell: TweetCell)
+}
+
 class TweetCell: UITableViewCell {
 
     @IBOutlet weak var retweetedLabel: UILabel!
@@ -22,7 +26,7 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var userTwitterHandleTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var timeSinceCreatedTopConstraint: NSLayoutConstraint!
     
-    var formatter = NSDateFormatter()
+    weak var delegate: TweetCellDelegate?
     
     var tweet: Tweet! {
         didSet {
@@ -78,13 +82,19 @@ class TweetCell: UITableViewCell {
     
     @IBAction func onReply(sender: AnyObject) {
         println("reply!")
+                
+        delegate?.onReplyFromTweetCell?(self)
     }
     
     @IBAction func onRetweet(sender: AnyObject) {
         println("retweet!")
+        
+        tweet?.retweet()
     }
     
     @IBAction func onFavorite(sender: AnyObject) {
         println("favorite!")
+        
+        tweet?.createFavorite()
     }
 }

@@ -15,6 +15,8 @@ class ComposeTweetViewController: UIViewController {
     @IBOutlet weak var userTwitterHandleLabel: UILabel!
     @IBOutlet weak var tweetMessageTextView: UITextView!
     
+    var replyToTweet: Tweet?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,6 +25,10 @@ class ComposeTweetViewController: UIViewController {
         userNameLabel.text = User.currentUser!.name
         if let userTwitterHandle = User.currentUser!.screenname {
             userTwitterHandleLabel.text = "@\(userTwitterHandle)"
+        }
+        
+        if let replyToTwitterHandle = replyToTweet?.user?.screenname {
+            tweetMessageTextView.text = "@\(replyToTwitterHandle) "
         }
     }
 
@@ -39,6 +45,8 @@ class ComposeTweetViewController: UIViewController {
         // send the tweet first!
         
         println(tweetMessageTextView.text)
+        
+        Tweet.sendTweet(tweetMessageTextView.text)
         
         navigationController?.popViewControllerAnimated(true)
     }

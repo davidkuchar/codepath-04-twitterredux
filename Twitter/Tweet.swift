@@ -9,6 +9,7 @@
 import UIKit
 
 class Tweet: NSObject {
+    var id: String?
     var user: User?
     var text: String?
     var createdAtString: String?
@@ -21,15 +22,17 @@ class Tweet: NSObject {
     init(dictionary: NSDictionary) {
         self.dictionary = dictionary
         
-//        println(dictionary)
+        println(dictionary)
         
         if let retweetedDictionary = dictionary["retweeted_status"] as? NSDictionary {
+            id = retweetedDictionary["id"] as? String
             user = User(dictionary: retweetedDictionary["user"] as! NSDictionary)
             text = retweetedDictionary["text"] as? String
             retweets = retweetedDictionary["retweet_count"] as? Int
             favorites = retweetedDictionary["favorite_count"] as? Int
             retweetedByUser = User(dictionary: dictionary["user"] as! NSDictionary)
         } else {
+            id = dictionary["id"] as? String
             user = User(dictionary: dictionary["user"] as! NSDictionary)
             text = dictionary["text"] as? String
             retweets = dictionary["retweet_count"] as? Int
@@ -71,6 +74,40 @@ class Tweet: NSObject {
             dateStyle: .ShortStyle,
             timeStyle: .ShortStyle)
         return dateString
+    }
+    
+    func retweet() {
+        if let tweetId = id {
+            TwitterClient.sharedInstance().retweetWithTweetId(tweetId, params: nil) { (tweet, error) -> () in
+                if tweet != nil {
+                    println("retweeted successfully! \(tweet)")
+                } else {
+                    println("error \(error)")
+                }
+            }
+        }
+    }
+    
+    func createFavorite() {
+        if let tweetId = id {
+            TwitterClient.sharedInstance().createFavoriteWithTweetId(tweetId, params: nil) { (tweet, error) -> () in
+                if tweet != nil {
+                    println("favorited successfully! \(tweet)")
+                } else {
+                    println("error \(error)")
+                }
+            }
+        }
+    }
+    
+    class func sendTweet(status: String) {
+        TwitterClient.sharedInstance().tweetWithStatus(status, params: nil) { (tweet, error) -> () in
+            if tweet != nil {
+                println("tweeted successfully! \(tweet)")
+            } else {
+                println("error \(error)")
+            }
+        }
     }
     
     class func tweetsWithArray(array: [NSDictionary]) -> [Tweet] {
