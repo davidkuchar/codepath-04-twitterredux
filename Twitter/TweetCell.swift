@@ -49,15 +49,29 @@ class TweetCell: UITableViewCell {
                 }
             }
             
-//
-//            hoursFrom(
-//            
-//            tweet.createdAt
-//            
-//            timeSinceCreatedLabel.text = tweet.createdAt
+            let elapsedTime = NSDate().timeIntervalSinceDate(tweet.createdAt!) as NSTimeInterval
+            
+            switch elapsedTime {
+            case 0...60:
+                let t = Int(round(elapsedTime))
+                timeSinceCreatedLabel.text = "\(t)s"
+            case 60...3600:
+                let t = Int(round(elapsedTime/60))
+                timeSinceCreatedLabel.text = "\(t)m"
+            case 3600...86400:
+                let t = Int(round(elapsedTime/3600))
+                timeSinceCreatedLabel.text = "\(t)h"
+            default:
+                let dateString = NSDateFormatter.localizedStringFromDate(
+                    tweet.createdAt!,
+                    dateStyle: .ShortStyle,
+                    timeStyle: .NoStyle)
+                timeSinceCreatedLabel.text = dateString
+            }
+            
+            println(elapsedTime)
+
             tweetMessageLabel.text = tweet.text
-            
-            
         }
     }
     

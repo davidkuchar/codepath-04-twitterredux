@@ -29,7 +29,7 @@ class Tweet: NSObject {
             text = retweetedDictionary["text"] as? String
             retweetedByUser = User(dictionary: dictionary["user"] as! NSDictionary)
             
-            println("tweet by \(user!.name). retweeted by \(retweetedByUser!.name)")
+//            println("tweet by \(user!.name). retweeted by \(retweetedByUser!.name)")
         } else {
             user = User(dictionary: dictionary["user"] as! NSDictionary)
             text = dictionary["text"] as? String
