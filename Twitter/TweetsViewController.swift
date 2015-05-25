@@ -23,6 +23,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             
             self.refreshControl?.endRefreshing()
             SVProgressHUD.dismiss()
+            self.tableView.reloadData()
         })
     }
     
@@ -67,8 +68,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        
+        self.performSegueWithIdentifier("tweetDetailSegue", sender: nil)
     }
     
     @IBAction func onLogout(sender: AnyObject) {

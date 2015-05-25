@@ -22,13 +22,13 @@ class ComposeTweetViewController: UIViewController {
     }
     
     @IBAction func onCancel(sender: AnyObject) {
-        dismissViewControllerAnimated(true, completion: nil)
+        navigationController?.popViewControllerAnimated(true)
     }
 
     @IBAction func onTweet(sender: AnyObject) {
         // send the tweet first!
         
-        dismissViewControllerAnimated(true, completion: nil)
+        navigationController?.popViewControllerAnimated(true)
     }
     
     /*

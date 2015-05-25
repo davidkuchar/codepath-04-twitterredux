@@ -88,20 +88,20 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="New" id="okj-sm-4Qr">
                             <connections>
-                                <segue destination="gEh-7H-K6f" kind="modal" id="rbt-HE-jh1"/>
+                                <segue destination="gEh-7H-K6f" kind="push" identifier="newTweetSegue" id="pBv-j6-svE"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="jrA-HR-AIk" id="XsR-hE-iIf"/>
-                        <segue destination="CMc-vr-o4p" kind="push" id="a0A-aC-NSw"/>
+                        <segue destination="CMc-vr-o4p" kind="push" identifier="tweetDetailSegue" id="a0A-aC-NSw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6LD-PP-lRf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="955" y="366"/>
         </scene>
-        <!--Compose Tweet View Controller-->
+        <!--Compose-->
         <scene sceneID="blQ-9X-toj">
             <objects>
                 <viewController id="gEh-7H-K6f" customClass="ComposeTweetViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
@@ -114,29 +114,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="New Tweet!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sDk-Ri-aO5">
-                                <rect key="frame" x="139" y="291" width="89" height="21"/>
+                                <rect key="frame" x="116" y="273" width="89" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LkQ-vT-Yvd">
-                                <rect key="frame" x="0.0" y="39" width="320" height="44"/>
-                                <items>
-                                    <navigationItem title="Compose Tweet" id="hMN-7d-gmf">
-                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="UQU-JY-d0e"/>
-                                        <barButtonItem key="rightBarButtonItem" title="Tweet" id="IzU-bK-D5w">
-                                            <connections>
-                                                <action selector="onTweet:" destination="gEh-7H-K6f" id="P0J-YO-DAc"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="WRO-9w-rUU">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="FgE-IK-enP"/>
+                    <navigationItem key="navigationItem" title="Compose" id="WRO-9w-rUU">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="FgE-IK-enP">
+                            <connections>
+                                <action selector="onCancel:" destination="gEh-7H-K6f" id="110-7l-dkf"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Tweet" id="IzU-bK-D5w">
+                            <connections>
+                                <action selector="onTweet:" destination="gEh-7H-K6f" id="P0J-YO-DAc"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SIL-c7-RIG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -154,12 +150,20 @@
                     <view key="view" contentMode="scaleToFill" id="RnV-8s-CQP">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="A bunch of details about a tweet!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cpn-nz-Q6K">
+                                <rect key="frame" x="34" y="273" width="253" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Tweet" id="y8J-oS-SJ3">
                         <barButtonItem key="rightBarButtonItem" title="Reply" id="wTF-as-60t">
                             <connections>
-                                <segue destination="gEh-7H-K6f" kind="modal" id="Y6y-g6-CG0"/>
+                                <segue destination="gEh-7H-K6f" kind="push" id="fFa-9v-9fy"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -171,7 +175,7 @@
         <!--Navigation Controller-->
         <scene sceneID="4vb-Hp-V7L">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="95Z-FX-IgC" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavigationController" automaticallyAdjustsScrollViewInsets="NO" id="95Z-FX-IgC" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="MMH-ja-Bo9">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -193,6 +197,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Y6y-g6-CG0"/>
+        <segue reference="pBv-j6-svE"/>
     </inferredMetricsTieBreakers>
 </document>
