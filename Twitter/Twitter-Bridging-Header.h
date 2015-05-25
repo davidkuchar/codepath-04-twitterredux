@@ -3,4 +3,6 @@
 //
 
 #import <AFNetworking/AFNetworking.h>
+#import <AFNetworking/UIImageView+AFNetworking.h>
 #import <BDBOAuth1Manager/BDBOAuth1RequestOperationManager.h>
+#import <SVProgressHUD/SVProgressHUD.h>
