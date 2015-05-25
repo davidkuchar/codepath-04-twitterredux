@@ -240,14 +240,49 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="New Tweet!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sDk-Ri-aO5">
-                                <rect key="frame" x="116" y="273" width="89" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jRN-01-twD">
+                                <rect key="frame" x="16" y="72" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="H8k-06-Wk5"/>
+                                    <constraint firstAttribute="height" constant="50" id="fry-jS-9rX"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="@davidkuchar" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gFc-tV-36D">
+                                <rect key="frame" x="74" y="97" width="91" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="David Kuchar" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lnw-t5-uqm">
+                                <rect key="frame" x="74" y="78" width="89" height="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7mK-5T-UON">
+                                <rect key="frame" x="15" y="130" width="288" height="418"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Lnw-t5-uqm" firstAttribute="top" secondItem="jWP-PJ-Scq" secondAttribute="bottom" constant="20" id="8rT-yA-cS7"/>
+                            <constraint firstItem="7mK-5T-UON" firstAttribute="leading" secondItem="XRW-Wi-5M1" secondAttribute="leading" constant="15" id="A39-2j-MYu"/>
+                            <constraint firstItem="gFc-tV-36D" firstAttribute="top" secondItem="Lnw-t5-uqm" secondAttribute="bottom" constant="2" id="G8E-jA-Ksy"/>
+                            <constraint firstItem="Lnw-t5-uqm" firstAttribute="leading" secondItem="gFc-tV-36D" secondAttribute="leading" id="GQW-bu-1j2"/>
+                            <constraint firstItem="7mK-5T-UON" firstAttribute="top" secondItem="jRN-01-twD" secondAttribute="bottom" constant="15" id="NCE-5s-HPu"/>
+                            <constraint firstItem="gFc-tV-36D" firstAttribute="leading" secondItem="Lnw-t5-uqm" secondAttribute="leading" id="Wdp-BZ-Cfs"/>
+                            <constraint firstItem="jRN-01-twD" firstAttribute="top" secondItem="jWP-PJ-Scq" secondAttribute="bottom" constant="15" id="XVo-nl-Qff"/>
+                            <constraint firstItem="jRN-01-twD" firstAttribute="leading" secondItem="XRW-Wi-5M1" secondAttribute="leading" constant="15" id="YJi-jC-SnO"/>
+                            <constraint firstItem="Lnw-t5-uqm" firstAttribute="leading" secondItem="jRN-01-twD" secondAttribute="trailing" constant="8" id="ZOL-U5-CPh"/>
+                            <constraint firstItem="gFc-tV-36D" firstAttribute="top" secondItem="Lnw-t5-uqm" secondAttribute="bottom" constant="4" id="gIg-KG-u3o"/>
+                            <constraint firstItem="Lnw-t5-uqm" firstAttribute="leading" secondItem="jRN-01-twD" secondAttribute="trailing" constant="8" id="hWO-nK-bgN"/>
+                            <constraint firstItem="gFc-tV-36D" firstAttribute="leading" secondItem="jRN-01-twD" secondAttribute="trailing" constant="8" id="jtK-xo-4kE"/>
+                            <constraint firstItem="jq1-na-HcA" firstAttribute="top" secondItem="7mK-5T-UON" secondAttribute="bottom" constant="15" id="kdI-gh-cey"/>
+                            <constraint firstAttribute="trailing" secondItem="7mK-5T-UON" secondAttribute="trailing" constant="15" id="uPk-UL-2nL"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Compose" id="WRO-9w-rUU">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="FgE-IK-enP">
@@ -261,6 +296,12 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tweetMessageTextView" destination="7mK-5T-UON" id="hng-hU-eRt"/>
+                        <outlet property="userImage" destination="jRN-01-twD" id="hUd-We-fu0"/>
+                        <outlet property="userNameLabel" destination="Lnw-t5-uqm" id="Wf1-ri-6PL"/>
+                        <outlet property="userTwitterHandleLabel" destination="gFc-tV-36D" id="de9-Wl-4RP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SIL-c7-RIG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
