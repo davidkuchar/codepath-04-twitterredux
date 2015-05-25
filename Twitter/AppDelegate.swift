@@ -43,47 +43,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
         
-        TwitterClient.sharedInstance().fetchAccessTokenWithPath("oauth/access_token", method: "POST", requestToken: BDBOAuth1Credential(queryString: url.query), success: { (accessToken: BDBOAuth1Credential!) -> Void in
-            
-            println("Got the access token")
-            
-            TwitterClient.sharedInstance().requestSerializer.saveAccessToken(accessToken)
-            
-            TwitterClient.sharedInstance().GET("1.1/account/verify_credentials.json", parameters: nil, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+        TwitterClient.sharedInstance().openURL(url)
                 
-//                println("Got current user: \(response)")
-                
-                var user = User(dictionary: response as! NSDictionary)
-                
-                println("Got current user: \(user.name)")
-                
-            }, failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
-                println("Error getting current user: \(error)")
-            })
-            
-            
-            TwitterClient.sharedInstance().GET("1.1/statuses/home_timeline.json", parameters: nil, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
-                
-//                println("Got home timeline: \(response)")
-                
-                var tweets = Tweet.tweetsWithArray(response as! [NSDictionary])
-            
-                for tweet in tweets {
-                    println("Tweet: \(tweet.text), Date: \(tweet.createdAt)")
-                }
-                
-            }, failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
-                println("Error getting home timeline: \(error)")
-            })
-            
-            
-        }) { (error: NSError!) -> Void in
-            
-                
-            println("Failed to receive access token: \(error)")
-        
-        }
-        
         return true
     }
 }
