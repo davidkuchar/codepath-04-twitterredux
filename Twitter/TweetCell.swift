@@ -11,11 +11,20 @@ import UIKit
 class TweetCell: UITableViewCell {
 
     @IBOutlet weak var userImage: UIImageView!
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var userTwitterHandleLabel: UILabel!
+    @IBOutlet weak var timeSinceCreatedLabel: UILabel!
+    @IBOutlet weak var tweetMessageLabel: UILabel!
+    
     
     var tweet: Tweet! {
         didSet {
-            
-            userImage.setImageWithURL(NSURL(string: tweet.user?.profileImageUrl ?? ""))
+            if let user = tweet.user {
+                userImage.setImageWithURL(NSURL(string: user.profileImageUrl!))
+                userNameLabel.text = user.name
+                userTwitterHandleLabel.text = "@\(user.screenname!)"
+            }
+            tweetMessageLabel.text = tweet.text
         }
     }
     
@@ -25,6 +34,8 @@ class TweetCell: UITableViewCell {
         
         userImage.layer.cornerRadius = 3
         userImage.clipsToBounds = true
+        
+//        userNameLabel.preferredMaxLayoutWidth = nameLabel.frame.size.width
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -33,42 +44,3 @@ class TweetCell: UITableViewCell {
         // Configure the view for the selected state
     }
 }
-//
-//
-//@IBOutlet weak var thumbImageView: UIImageView!
-//@IBOutlet weak var nameLabel: UILabel!
-//@IBOutlet weak var distanceLabel: UILabel!
-//@IBOutlet weak var ratingImageLabel: UIImageView!
-//@IBOutlet weak var reviewsCountLabel: UILabel!
-//@IBOutlet weak var priceLabel: UILabel!
-//@IBOutlet weak var locationLabel: UILabel!
-//@IBOutlet weak var categoriesLabel: UILabel!
-//
-//var business: Business! {
-//didSet {
-//    nameLabel.text = business.name
-//    thumbImageView.setImageWithURL(business.imageURL)
-//    categoriesLabel.text = business.categories
-//    locationLabel.text = business.address
-//    reviewsCountLabel.text = "\(business.reviewCount!) Reviews"
-//    ratingImageLabel.setImageWithURL(business.ratingImageURL)
-//    distanceLabel.text = business.distance
-//}
-//}
-//
-//override func awakeFromNib() {
-//    super.awakeFromNib()
-//    // Initialization code
-//    
-//    thumbImageView.layer.cornerRadius = 3
-//    thumbImageView.clipsToBounds = true
-//    
-//    nameLabel.preferredMaxLayoutWidth = nameLabel.frame.size.width
-//}
-//
-//override func layoutSubviews() {
-//    super.layoutSubviews()
-//    
-//    nameLabel.preferredMaxLayoutWidth = nameLabel.frame.size.width
-//}
-//
