@@ -27,18 +27,15 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         })
     }
     
-    func refreshTweets(sender:AnyObject)
+    func refreshTweets(sender: AnyObject)
     {
         // Code to refresh table view
         loadTweets()
     }
-    
-    override func viewWillAppear(animated: Bool) {
-        refreshControl = UIRefreshControl()
-        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refreshControl.addTarget(self, action: "refreshTweets:", forControlEvents: UIControlEvents.ValueChanged)
-        tableView.addSubview(refreshControl)
-    }
+//    
+//    override func viewDidAppear(animated: Bool) {
+//        refreshTweets(nil)
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +47,14 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         
+        refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: "refreshTweets:", forControlEvents: UIControlEvents.ValueChanged)
+        tableView.addSubview(refreshControl)
+        
         loadTweets()
+        
+        println("viewDidLoad")
     }
 
     override func didReceiveMemoryWarning() {
@@ -103,10 +107,12 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
                 tweetDetailsViewContoller.tweet = tweets![indexPath.row]
             }
         } else if segue.identifier == "newTweetSegue" {
-            let indexPath = sender as! NSIndexPath
-            
-            if let composeTweetViewContoller = segue.destinationViewController as? ComposeTweetViewController {
-                composeTweetViewContoller.replyToTweet = tweets![indexPath.row]
+            if sender is NSIndexPath {
+                let indexPath = sender as! NSIndexPath
+                
+                if let composeTweetViewContoller = segue.destinationViewController as? ComposeTweetViewController {
+                    composeTweetViewContoller.replyToTweet = tweets![indexPath.row]
+                }
             }
         }
     }

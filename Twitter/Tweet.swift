@@ -22,7 +22,7 @@ class Tweet: NSObject {
     init(dictionary: NSDictionary) {
         self.dictionary = dictionary
         
-        println(dictionary)
+//        println(dictionary)
         
         if let retweetedDictionary = dictionary["retweeted_status"] as? NSDictionary {
             id = retweetedDictionary["id"] as? String

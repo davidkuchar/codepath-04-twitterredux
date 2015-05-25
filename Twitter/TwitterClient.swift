@@ -47,9 +47,16 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
     }
     
     func tweetWithStatus(status: String, params: NSDictionary?, completion: (tweet: Tweet?, error: NSError?) -> ()) {
-        var _params = params ?? NSDictionary()
-        _params.setValue(status, forKey: "status")
-        
+
+        var _params: NSMutableDictionary = [
+            "status": status
+        ]
+        if params != nil {
+            for (key, value) in params! {
+                _params.setValue(value, forKey: key as! String)
+            }
+        }
+
         POST("1.1/statuses/update.json", parameters: _params, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
             println("Got response from tweeting")
             
@@ -79,8 +86,15 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
     }
     
     func createFavoriteWithTweetId(tweetId: String, params: NSDictionary?, completion: (tweet: Tweet?, error: NSError?) -> ()) {
-        var _params = params ?? NSDictionary()
-        _params.setValue(tweetId, forKey: "id")
+
+        var _params: NSMutableDictionary = [
+            "id": tweetId
+        ]
+        if params != nil {
+            for (key, value) in params! {
+                _params.setValue(value, forKey: key as! String)
+            }
+        }
         
         POST("1.1/favorites/create.json", parameters: _params, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
             
