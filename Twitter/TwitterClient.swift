@@ -44,7 +44,57 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
             
             completion(tweets: nil, error: error)
         })
+    }
+    
+    func tweetWithStatus(status: String, params: NSDictionary?, completion: (tweet: Tweet?, error: NSError?) -> ()) {
+        var _params = params ?? NSDictionary()
+        _params.setValue(status, forKey: "status")
+        
+        POST("1.1/statuses/update.json", parameters: _params, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+            println("Got response from tweeting")
+            
+            var tweet = Tweet(dictionary: response as! NSDictionary)
+            
+            completion(tweet: tweet, error: nil)
+            }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+                println("Error tweeting: \(error)")
+                
+                completion(tweet: nil, error: error)
+        }
+    }
+    
+    func retweetWithTweetId(tweetId: String, params: NSDictionary?, completion: (tweet: Tweet?, error: NSError?) -> ()) {
 
+        POST("1.1/statuses/retweet/\(tweetId).json", parameters: params, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+            println("Got response from retweeting")
+            
+            var tweet = Tweet(dictionary: response as! NSDictionary)
+            
+            completion(tweet: tweet, error: nil)
+        }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+            println("Error retweeting: \(error)")
+            
+            completion(tweet: nil, error: error)
+        }
+    }
+    
+    func createFavoriteWithTweetId(tweetId: String, params: NSDictionary?, completion: (tweet: Tweet?, error: NSError?) -> ()) {
+        var _params = params ?? NSDictionary()
+        _params.setValue(tweetId, forKey: "id")
+        
+        POST("1.1/favorites/create.json", parameters: _params, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+            
+            println("Got response from setting favorite")
+            
+            var tweet = Tweet(dictionary: response as! NSDictionary)
+            
+            completion(tweet: tweet, error: nil)
+            
+            }, failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+                println("Error setting favorite: \(error)")
+                
+                completion(tweet: nil, error: error)
+        })
     }
     
     func loginWithCompletion(completion: (user: User?, error: NSError?) -> ()) {
