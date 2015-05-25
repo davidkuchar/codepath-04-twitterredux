@@ -51,7 +51,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             TwitterClient.sharedInstance().GET("1.1/account/verify_credentials.json", parameters: nil, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
                 
-                println("Got current user: \(response)")
+//                println("Got current user: \(response)")
+                
+                var user = User(dictionary: response as! NSDictionary)
+                
+                println("Got current user: \(user.name)")
                 
             }, failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
                 println("Error getting current user: \(error)")
@@ -60,10 +64,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             TwitterClient.sharedInstance().GET("1.1/statuses/home_timeline.json", parameters: nil, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
                 
-                println("Got home timeline: \(response)")
+//                println("Got home timeline: \(response)")
                 
-                }, failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
-                    println("Error getting home timeline: \(error)")
+                var tweets = Tweet.tweetsWithArray(response as! [NSDictionary])
+            
+                for tweet in tweets {
+                    println("Tweet: \(tweet.text), Date: \(tweet.createdAt)")
+                }
+                
+            }, failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+                println("Error getting home timeline: \(error)")
             })
             
             
