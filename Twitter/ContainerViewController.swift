@@ -16,12 +16,7 @@ enum SlideOutState {
 class ContainerViewController: UIViewController, SidePanelViewControllerDelegate {
 
     var centerNavigationController: UINavigationController!
-    var currentState: SlideOutState = .Collapsed {
-        didSet {
-            let shouldShowShadow = currentState != .Collapsed
-            showShadowForCenterViewController(shouldShowShadow)
-        }
-    }
+    var currentState: SlideOutState = .Collapsed
     var leftViewController: SidePanelViewController?
     let centerPanelExpandedOffset: CGFloat = 60
     
@@ -53,6 +48,7 @@ class ContainerViewController: UIViewController, SidePanelViewControllerDelegate
         
         if panGestureRecognizer.state == UIGestureRecognizerState.Began {
             panOriginalCenter = point
+            showShadowForCenterViewController(true)
         } else if panGestureRecognizer.state == UIGestureRecognizerState.Changed {
             var translation_x = point.x - panOriginalCenter.x
             if translation_x >= 0  {
@@ -80,6 +76,7 @@ class ContainerViewController: UIViewController, SidePanelViewControllerDelegate
         } else if centerNavigationController.view.frame.origin.x > 0 {
             centerNavigationController.view.frame.origin.x = 0
         }
+        showShadowForCenterViewController(false)
     }
     
     func addLeftPanelViewController() {
@@ -130,14 +127,16 @@ class ContainerViewController: UIViewController, SidePanelViewControllerDelegate
     func onMenuItemSelected(sender: AnyObject?, menuItem: MenuItem) {
         switch menuItem {
         case .Profile:
-            closeLeftPanel()
+            centerNavigationController.popToRootViewControllerAnimated(false)
             centerNavigationController.topViewController.performSegueWithIdentifier("onOpenProfile", sender: sender)
+            closeLeftPanel()
         case .Timeline:
-            closeLeftPanel()
             centerNavigationController.popToRootViewControllerAnimated(true)
-        case .Mentions:
             closeLeftPanel()
+        case .Mentions:
+            centerNavigationController.popToRootViewControllerAnimated(false)
             centerNavigationController.topViewController.performSegueWithIdentifier("onOpenMentions", sender: sender)
+            closeLeftPanel()
         default:
             println("opened menuitem default")
         }

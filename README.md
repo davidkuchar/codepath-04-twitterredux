@@ -18,13 +18,9 @@ This is a basic twitter app to read and compose tweets the [Twitter API](https:/
 - Owner ID
   23178363
 
-Time spent: `8:35`
+Time spent: `8:58`
 
 ### Features
-
-## TODO
-
-1. wire up mentions view
 
 #### Required
 
