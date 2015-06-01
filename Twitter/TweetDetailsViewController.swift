@@ -44,7 +44,7 @@ class TweetDetailsViewController: UIViewController {
             }
             
             if let user = tweet!.user {
-                userImageButton.setImageForState(UIControlState.Normal, withURL: NSURL(string: user.profileImageUrl!))
+                userImageButton.setBackgroundImageForState(UIControlState.Normal, withURL: NSURL(string: user.profileImageUrl!))
                 userImageButton.layer.cornerRadius = 3
                 userImageButton.clipsToBounds = true
                 userNameLabel.text = user.name

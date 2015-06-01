@@ -21,7 +21,7 @@ class ComposeTweetViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        userImageButton.setImageForState(.Normal, withURL: NSURL(string: User.currentUser!.profileImageUrl!))
+        userImageButton.setBackgroundImageForState(.Normal, withURL: NSURL(string: User.currentUser!.profileImageUrl!))
         userImageButton.layer.cornerRadius = 3
         userImageButton.clipsToBounds = true
         userNameLabel.text = User.currentUser!.name

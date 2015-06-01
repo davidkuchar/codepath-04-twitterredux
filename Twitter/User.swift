@@ -40,6 +40,12 @@ class User: NSObject {
         followerCount = dictionary["followers_count"] as? Int
     }
     
+    func login() {
+        User.currentUser = self
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(userDidLoginNotification, object: self)
+    }
+    
     func logout() {
         User.currentUser = nil
         TwitterClient.sharedInstance().requestSerializer.removeAccessToken()

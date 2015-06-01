@@ -24,12 +24,14 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        userBackgroundImage.setImageWithURL(NSURL(string: user!.headerImageUrl!))
+        if user!.headerImageUrl != nil {
+            userBackgroundImage.setImageWithURL(NSURL(string: user!.headerImageUrl!))
+        }
         userImage.setImageWithURL(NSURL(string: user!.profileImageUrl!))
         userImage.layer.cornerRadius = 3
         userImage.clipsToBounds = true
         userNameLabel.text = user!.name
-        userTwitterHandleLabel.text = "@\(user!.screenname)"
+        userTwitterHandleLabel.text = "@\(user!.screenname!)"
         tweetCountLabel.text = String(user!.tweetCount!)
         followingCountLabel.text = String(user!.followingCount!)
         followerCountLabel.text = String(user!.followerCount!)

@@ -43,7 +43,7 @@ class TweetCell: UITableViewCell {
             }
             
             if let user = tweet.user {
-                userImageButton.setImageForState(.Normal, withURL: NSURL(string: user.profileImageUrl!))
+                userImageButton.setBackgroundImageForState(.Normal, withURL: NSURL(string: user.profileImageUrl!))
                 userNameLabel.text = user.name
                 if let userTwitterHandle = user.screenname {
                     usernameButton.setTitle("@\(userTwitterHandle)", forState: UIControlState.Normal)
@@ -62,13 +62,13 @@ class TweetCell: UITableViewCell {
         userImageButton.layer.cornerRadius = 3
         userImageButton.clipsToBounds = true
         
-        tweetMessageLabel.preferredMaxLayoutWidth = tweetMessageLabel.frame.size.width
+//        tweetMessageLabel.preferredMaxLayoutWidth = tweetMessageLabel.frame.size.width
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        tweetMessageLabel.preferredMaxLayoutWidth = tweetMessageLabel.frame.size.width
+//        tweetMessageLabel.preferredMaxLayoutWidth = tweetMessageLabel.frame.size.width
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

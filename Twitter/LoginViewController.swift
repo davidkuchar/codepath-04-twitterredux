@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  LoginViewController
 //  Twitter
 //
 //  Created by David Kuchar on 5/18/15.
@@ -28,7 +28,7 @@ class LoginViewController: UIViewController {
             (user: User?, error: NSError?) in
             if user != nil {
                 // perform segue
-                self.performSegueWithIdentifier("loginSegue", sender: self)
+                user?.login()
             } else {
                 // handle login error
             }
