@@ -18,19 +18,18 @@ This is a basic twitter app to read and compose tweets the [Twitter API](https:/
 - Owner ID
   23178363
 
-Time spent: `5:09`
+Time spent: `5:12`
 
 ### Features
 
 ## TODO
 
-1. Get the Hamburger view installed
-2. add Hamburger view animation
-3. add mentions view
-4. wire up mentions view
-5. wire up profile view
-6. fix constraints
-7. fix profile image fills
+1. add links from hamburger menu
+2. add mentions view
+3. wire up mentions view
+4. wire up profile view
+5. fix constraints
+6. fix profile image fills
 
 #### Required
 
