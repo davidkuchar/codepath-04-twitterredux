@@ -33,6 +33,25 @@
             </objects>
             <point key="canvasLocation" x="200" y="-301"/>
         </scene>
+        <!--Mentions-->
+        <scene sceneID="nPh-8V-OAy">
+            <objects>
+                <viewController id="qJs-wx-eu4" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="J6Y-8C-Adp"/>
+                        <viewControllerLayoutGuide type="bottom" id="TlW-BE-jMA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Hc5-Kf-hJH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Mentions" id="fT3-Qp-pom"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Oeh-Mo-iEL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="955" y="1121"/>
+        </scene>
         <!--Home-->
         <scene sceneID="YDF-R9-WtI">
             <objects>
@@ -234,6 +253,7 @@
                         <outlet property="tableView" destination="jrA-HR-AIk" id="XsR-hE-iIf"/>
                         <segue destination="CMc-vr-o4p" kind="push" identifier="tweetDetailSegue" id="a0A-aC-NSw"/>
                         <segue destination="lbH-bN-jX6" kind="push" identifier="onOpenProfile" id="CWl-ff-2fH"/>
+                        <segue destination="qJs-wx-eu4" kind="push" identifier="onOpenMentions" id="Cj3-Hi-Zj2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6LD-PP-lRf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -325,7 +345,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SIL-c7-RIG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="955" y="1110"/>
+            <point key="canvasLocation" x="1419" y="1110"/>
         </scene>
         <!--Profile-->
         <scene sceneID="pfC-TH-cGW">
@@ -369,15 +389,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Left Panel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IFC-WW-bsv">
-                                <rect key="frame" x="139" y="273" width="77" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="56" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="y7I-3O-XEn">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="56" id="1n6-p3-XW0">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1n6-p3-XW0" id="Gft-nQ-8NY">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q6O-LB-Pi7">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <items>
+                                    <navigationItem id="nOU-sh-WSt">
+                                        <barButtonItem key="leftBarButtonItem" title="Mentions" id="pXv-Y2-SXN">
+                                            <connections>
+                                                <action selector="onTapMentions:" destination="hFf-2n-Q8n" id="ZcE-rE-noP"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="y7I-3O-XEn" id="Srj-HE-6Bm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dcj-QW-fpr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

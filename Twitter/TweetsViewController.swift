@@ -118,9 +118,15 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
                 }
             }
         } else if segue.identifier == "onOpenProfile" {
+            var user: User?
             if let tweetCell = sender as? TweetCell {
+                user = tweetCell.tweet?.user
+            } else {
+                user = User.currentUser
+            }
+            if user != nil {
                 if let profileViewContoller = segue.destinationViewController as? ProfileViewController {
-                    profileViewContoller.user = tweetCell.tweet?.user
+                    profileViewContoller.user = user
                 }
             }
         }

@@ -13,7 +13,7 @@ enum SlideOutState {
     case LeftPanelExpanded
 }
 
-class ContainerViewController: UIViewController {
+class ContainerViewController: UIViewController, SidePanelViewControllerDelegate {
 
     var centerNavigationController: UINavigationController!
     var currentState: SlideOutState = .Collapsed {
@@ -85,6 +85,7 @@ class ContainerViewController: UIViewController {
     func addLeftPanelViewController() {
         if (leftViewController == nil) {
             leftViewController = storyboard?.instantiateViewControllerWithIdentifier("LeftPanelViewController") as? SidePanelViewController
+            leftViewController?.delegate = self
             
             addChildSidePanelController(leftViewController!)
         }
@@ -125,4 +126,21 @@ class ContainerViewController: UIViewController {
             centerNavigationController.view.layer.shadowOpacity = 0.0
         }
     }
+    
+    func onMenuItemSelected(sender: AnyObject?, menuItem: MenuItem) {
+        switch menuItem {
+        case .Profile:
+            closeLeftPanel()
+            centerNavigationController.topViewController.performSegueWithIdentifier("onOpenProfile", sender: sender)
+        case .Timeline:
+            closeLeftPanel()
+            centerNavigationController.popToRootViewControllerAnimated(true)
+        case .Mentions:
+            closeLeftPanel()
+            centerNavigationController.topViewController.performSegueWithIdentifier("onOpenMentions", sender: sender)
+        default:
+            println("opened menuitem default")
+        }
+    }
+
 }
