@@ -18,7 +18,7 @@ This is a basic twitter app to read and compose tweets the [Twitter API](https:/
 - Owner ID
   23178363
 
-Time spent: `2:37`
+Time spent: `2:42`
 
 ### Features
 
@@ -29,7 +29,7 @@ Time spent: `2:37`
 - [ ] Hamburger menu: The menu can look similar to the LinkedIn menu below or feel free to take liberty with the UI.
 - [ ] Profile page: Contains the user header view
 - [ ] Profile page: Contains a section with the users basic stats: # tweets, # following, # followers
-- [ ] Home Timeline: Tapping on a user image should bring up that user's profile page
+- [x] Home Timeline: Tapping on a user image should bring up that user's profile page
 
 #### Optional
 
