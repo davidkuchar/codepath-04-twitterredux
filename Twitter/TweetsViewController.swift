@@ -78,9 +78,9 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-//        var cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as! TweetCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as! TweetCell
         
-        self.performSegueWithIdentifier("tweetDetailSegue", sender: indexPath)
+        self.performSegueWithIdentifier("tweetDetailSegue", sender: cell)
         
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
     }
@@ -90,9 +90,11 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func onReplyFromTweetCell(tweetCell: TweetCell) {
-        let indexPath = tableView.indexPathForCell(tweetCell)!
-        
-        performSegueWithIdentifier("newTweetSegue", sender: indexPath)
+        performSegueWithIdentifier("newTweetSegue", sender: tweetCell)
+    }
+    
+    func onOpenProfileFromTweetCell(tweetCell: TweetCell) {
+        performSegueWithIdentifier("onOpenProfile", sender: tweetCell)
     }
 
     // MARK: - Navigation
@@ -103,17 +105,21 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         // Pass the selected object to the new view controller.
         
         if segue.identifier == "tweetDetailSegue" {
-            let indexPath = sender as! NSIndexPath
-
-            if let tweetDetailsViewContoller = segue.destinationViewController as? TweetDetailsViewController {
-                tweetDetailsViewContoller.tweet = tweets![indexPath.row]
+            if let tweetCell = sender as? TweetCell {
+                if let tweetDetailsViewContoller = segue.destinationViewController as? TweetDetailsViewController {
+                    tweetDetailsViewContoller.tweet = tweetCell.tweet
+                }
             }
         } else if segue.identifier == "newTweetSegue" {
-            if sender is NSIndexPath {
-                let indexPath = sender as! NSIndexPath
-                
+            if let tweetCell = sender as? TweetCell {
                 if let composeTweetViewContoller = segue.destinationViewController as? ComposeTweetViewController {
-                    composeTweetViewContoller.replyToTweet = tweets![indexPath.row]
+                    composeTweetViewContoller.replyToTweet = tweetCell.tweet
+                }
+            }
+        } else if segue.identifier == "onOpenProfile" {
+            if let tweetCell = sender as? TweetCell {
+                if let profileViewContoller = segue.destinationViewController as? ProfileViewController {
+                    profileViewContoller.user = tweetCell.tweet?.user
                 }
             }
         }

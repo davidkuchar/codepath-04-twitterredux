@@ -12,7 +12,7 @@ class TweetDetailsViewController: UIViewController {
 
     @IBOutlet weak var retweetedImage: UIImageView!
     @IBOutlet weak var retweetedLabel: UILabel!
-    @IBOutlet weak var userImage: UIImageView!
+    @IBOutlet weak var userImageButton: UIButton!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var tweetMessageLabel: UILabel!
     @IBOutlet weak var dateTimeCreatedLabel: UILabel!
@@ -44,7 +44,9 @@ class TweetDetailsViewController: UIViewController {
             }
             
             if let user = tweet!.user {
-                userImage.setImageWithURL(NSURL(string: user.profileImageUrl!))
+                userImageButton.setImageForState(UIControlState.Normal, withURL: NSURL(string: user.profileImageUrl!))
+                userImageButton.layer.cornerRadius = 3
+                userImageButton.clipsToBounds = true
                 userNameLabel.text = user.name
                 if let userTwitterHandle = user.screenname {
                     usernameButton.setTitle("@\(userTwitterHandle)", forState: UIControlState.Normal)
@@ -66,7 +68,7 @@ class TweetDetailsViewController: UIViewController {
     @IBAction func onReply(sender: AnyObject) {
         println("reply!")
         
-        performSegueWithIdentifier("newTweetFromDetailsSegue", sender: nil)
+        performSegueWithIdentifier("newTweetFromDetailsSegue", sender: sender)
     }
     
     @IBAction func onRetweet(sender: AnyObject) {
@@ -92,6 +94,10 @@ class TweetDetailsViewController: UIViewController {
         if segue.identifier == "newTweetFromDetailsSegue" {
             if let composeTweetViewContoller = segue.destinationViewController as? ComposeTweetViewController {
                 composeTweetViewContoller.replyToTweet = tweet
+            }
+        } else if segue.identifier == "onOpenProfile" {
+            if let profileViewContoller = segue.destinationViewController as? ProfileViewController {
+                profileViewContoller.user = tweet!.user
             }
         }
     }

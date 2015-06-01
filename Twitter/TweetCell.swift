@@ -10,13 +10,14 @@ import UIKit
 
 @objc protocol TweetCellDelegate {
     optional func onReplyFromTweetCell(tweetCell: TweetCell)
+    optional func onOpenProfileFromTweetCell(tweetCell: TweetCell)
 }
 
 class TweetCell: UITableViewCell {
 
     @IBOutlet weak var retweetImage: UIImageView!
     @IBOutlet weak var retweetedLabel: UILabel!
-    @IBOutlet weak var userImage: UIImageView!
+    @IBOutlet weak var userImageButton: UIButton!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var timeSinceCreatedLabel: UILabel!
     @IBOutlet weak var tweetMessageLabel: UILabel!
@@ -42,7 +43,7 @@ class TweetCell: UITableViewCell {
             }
             
             if let user = tweet.user {
-                userImage.setImageWithURL(NSURL(string: user.profileImageUrl!))
+                userImageButton.setImageForState(.Normal, withURL: NSURL(string: user.profileImageUrl!))
                 userNameLabel.text = user.name
                 if let userTwitterHandle = user.screenname {
                     usernameButton.setTitle("@\(userTwitterHandle)", forState: UIControlState.Normal)
@@ -58,8 +59,8 @@ class TweetCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        userImage.layer.cornerRadius = 3
-        userImage.clipsToBounds = true
+        userImageButton.layer.cornerRadius = 3
+        userImageButton.clipsToBounds = true
         
         tweetMessageLabel.preferredMaxLayoutWidth = tweetMessageLabel.frame.size.width
     }
@@ -76,6 +77,14 @@ class TweetCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    @IBAction func onOpenProfileFromUserImage(sender: AnyObject) {
+        delegate?.onOpenProfileFromTweetCell?(self)
+    }
+    
+    @IBAction func onOpenProfileFromUserName(sender: AnyObject) {
+        delegate?.onOpenProfileFromTweetCell?(self)
+    }
+
     @IBAction func onReply(sender: AnyObject) {
         println("reply!")
                 

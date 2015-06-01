@@ -10,7 +10,7 @@ import UIKit
 
 class ComposeTweetViewController: UIViewController {
 
-    @IBOutlet weak var userImage: UIImageView!
+    @IBOutlet weak var userImageButton: UIButton!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var usernameButton: UIButton!
     @IBOutlet weak var tweetMessageTextView: UITextView!
@@ -21,7 +21,9 @@ class ComposeTweetViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        userImage.setImageWithURL(NSURL(string: User.currentUser!.profileImageUrl!))
+        userImageButton.setImageForState(.Normal, withURL: NSURL(string: User.currentUser!.profileImageUrl!))
+        userImageButton.layer.cornerRadius = 3
+        userImageButton.clipsToBounds = true
         userNameLabel.text = User.currentUser!.name
         if let userTwitterHandle = User.currentUser!.screenname {
             usernameButton.setTitle("@\(userTwitterHandle)", forState: UIControlState.Normal)
@@ -51,14 +53,17 @@ class ComposeTweetViewController: UIViewController {
         navigationController?.popViewControllerAnimated(true)
     }
     
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-    }
-    */
 
+        if segue.identifier == "onOpenProfile" {
+            if let profileViewContoller = segue.destinationViewController as? ProfileViewController {
+                profileViewContoller.user = User.currentUser!
+            }
+        }
+    }
 }
