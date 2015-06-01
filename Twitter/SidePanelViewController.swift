@@ -9,14 +9,15 @@
 import UIKit
 
 @objc enum MenuItem: Int {
-    case Profile = 1
+    case Mentions = -1
+    case Profile
     case Timeline
-    case Mentions
 }
 
 @objc protocol SidePanelViewControllerDelegate {
     optional func onMenuItemSelected(sender: AnyObject?, menuItem: MenuItem)
 }
+
 
 class SidePanelViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -36,21 +37,37 @@ class SidePanelViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return 2
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("SelectCell", forIndexPath: indexPath) as! SelectCell
+        
+        switch MenuItem(rawValue: indexPath.row) {
+        case .Some(.Profile):
+            cell.nameLabel.text = "Your Profile"
+        case .Some(.Timeline):
+            cell.nameLabel.text = "Your Timeline"
+        default:
+            break
+        }
         
         return cell
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        switch MenuItem(rawValue: indexPath.row) {
+        case .Some(.Profile):
+            delegate?.onMenuItemSelected?(self, menuItem: .Profile)
+        case .Some(.Timeline):
+            delegate?.onMenuItemSelected?(self, menuItem: .Timeline)
+        default:
+            break
+        }
     }
 
     @IBAction func onTapMentions(sender: AnyObject) {
         println("onTapMentions")
-        delegate?.onMenuItemSelected?(self, menuItem: MenuItem.Mentions)
+        delegate?.onMenuItemSelected?(self, menuItem: .Mentions)
     }
 }
