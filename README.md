@@ -18,13 +18,23 @@ This is a basic twitter app to read and compose tweets the [Twitter API](https:/
 - Owner ID
   23178363
 
-Time spent: `2:42`
+Time spent: `5:09`
 
 ### Features
 
+## TODO
+
+1. Get the Hamburger view installed
+2. add Hamburger view animation
+3. add mentions view
+4. wire up mentions view
+5. wire up profile view
+6. fix constraints
+7. fix profile image fills
+
 #### Required
 
-- [ ] Hamburger menu: Dragging anywhere in the view should reveal the menu.
+- [x] Hamburger menu: Dragging anywhere in the view should reveal the menu.
 - [ ] Hamburger menu: The menu should include links to your profile, the home timeline, and the mentions view.
 - [ ] Hamburger menu: The menu can look similar to the LinkedIn menu below or feel free to take liberty with the UI.
 - [ ] Profile page: Contains the user header view

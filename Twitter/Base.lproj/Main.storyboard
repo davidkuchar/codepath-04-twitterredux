@@ -28,13 +28,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <connections>
-                        <segue destination="95Z-FX-IgC" kind="modal" identifier="loginSegue" id="q2J-JH-jU1"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="162.66666666666666" y="366.36000000000001"/>
+            <point key="canvasLocation" x="200" y="-301"/>
         </scene>
         <!--Home-->
         <scene sceneID="YDF-R9-WtI">
@@ -129,17 +126,6 @@
                                                         <action selector="onRetweet:" destination="CoA-qQ-K84" eventType="touchUpInside" id="G3V-Pi-3Rd"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wl7-O4-zVQ">
-                                                    <rect key="frame" x="158" y="24" width="114" height="30"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <state key="normal" title="@davidkuchar">
-                                                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="onOpenProfileFromUserName:" destination="CoA-qQ-K84" eventType="touchUpInside" id="nt1-Ap-vPq"/>
-                                                    </connections>
-                                                </button>
                                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aRo-nQ-DBB">
                                                     <rect key="frame" x="8" y="31" width="50" height="50"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -156,26 +142,37 @@
                                                         <action selector="onOpenProfileFromUserImage:" destination="CoA-qQ-K84" eventType="touchUpInside" id="cp7-Nu-Y7D"/>
                                                     </connections>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wl7-O4-zVQ">
+                                                    <rect key="frame" x="158" y="24" width="114" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <state key="normal" title="@davidkuchar">
+                                                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="onOpenProfileFromUserName:" destination="CoA-qQ-K84" eventType="touchUpInside" id="nt1-Ap-vPq"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="AmP-rA-lTs" firstAttribute="top" secondItem="3rj-NA-6SB" secondAttribute="bottom" constant="4" id="2Gc-Db-K21"/>
-                                                <constraint firstItem="VRj-yJ-LIe" firstAttribute="baseline" secondItem="Wl7-O4-zVQ" secondAttribute="baseline" id="2mR-EM-bYf"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="l74-s9-kYe" secondAttribute="bottom" constant="8" id="2qr-5u-1US"/>
                                                 <constraint firstItem="3rj-NA-6SB" firstAttribute="top" secondItem="ApZ-nY-Tvu" secondAttribute="top" constant="8" id="4tD-Jz-4MC"/>
                                                 <constraint firstItem="AmP-rA-lTs" firstAttribute="leading" secondItem="2Uk-WP-bQ4" secondAttribute="leading" id="695-Ob-h1T"/>
                                                 <constraint firstItem="l74-s9-kYe" firstAttribute="leading" secondItem="GwQ-YA-eBY" secondAttribute="trailing" constant="40" id="7St-wy-S6c"/>
+                                                <constraint firstItem="VRj-yJ-LIe" firstAttribute="centerY" secondItem="AmP-rA-lTs" secondAttribute="centerY" id="8Tb-BV-DMd"/>
                                                 <constraint firstItem="AmP-rA-lTs" firstAttribute="top" secondItem="ApZ-nY-Tvu" secondAttribute="top" constant="31" id="B2O-p6-Y9t"/>
                                                 <constraint firstItem="GwQ-YA-eBY" firstAttribute="leading" secondItem="OU1-Xx-eoW" secondAttribute="trailing" constant="40" id="Eyc-Po-V9I"/>
                                                 <constraint firstItem="GwQ-YA-eBY" firstAttribute="leading" secondItem="OU1-Xx-eoW" secondAttribute="trailing" constant="40" id="FjC-w8-WOc"/>
-                                                <constraint firstItem="3rj-NA-6SB" firstAttribute="centerY" secondItem="PT3-WY-sQu" secondAttribute="centerY" id="Frt-6f-GQG"/>
+                                                <constraint firstItem="3rj-NA-6SB" firstAttribute="top" secondItem="PT3-WY-sQu" secondAttribute="top" id="Ii0-iz-d1j"/>
+                                                <constraint firstItem="VRj-yJ-LIe" firstAttribute="centerY" secondItem="Wl7-O4-zVQ" secondAttribute="centerY" id="RC4-Js-v42"/>
+                                                <constraint firstItem="Wl7-O4-zVQ" firstAttribute="leading" secondItem="AmP-rA-lTs" secondAttribute="trailing" constant="4" id="YKN-uI-an8"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="OU1-Xx-eoW" secondAttribute="bottom" constant="8" id="alJ-84-kG8"/>
                                                 <constraint firstItem="aRo-nQ-DBB" firstAttribute="leading" secondItem="ApZ-nY-Tvu" secondAttribute="leading" constant="8" id="apm-g6-o9j"/>
                                                 <constraint firstItem="OU1-Xx-eoW" firstAttribute="top" secondItem="2Uk-WP-bQ4" secondAttribute="bottom" constant="8" id="bP1-Hb-Y47"/>
                                                 <constraint firstItem="PT3-WY-sQu" firstAttribute="top" secondItem="ApZ-nY-Tvu" secondAttribute="top" constant="11" id="f9D-zQ-u4T"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="2Uk-WP-bQ4" secondAttribute="trailing" constant="8" id="fXf-YM-7zX"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="GwQ-YA-eBY" secondAttribute="bottom" constant="8" id="hSR-HN-5rU"/>
-                                                <constraint firstItem="VRj-yJ-LIe" firstAttribute="baseline" secondItem="AmP-rA-lTs" secondAttribute="baseline" id="hcM-k3-TRT"/>
-                                                <constraint firstItem="Wl7-O4-zVQ" firstAttribute="leading" secondItem="AmP-rA-lTs" secondAttribute="trailing" constant="3" id="jpi-l5-dPB"/>
                                                 <constraint firstItem="aRo-nQ-DBB" firstAttribute="top" secondItem="ApZ-nY-Tvu" secondAttribute="top" constant="31" id="n7e-8p-xje"/>
                                                 <constraint firstItem="3rj-NA-6SB" firstAttribute="bottom" secondItem="PT3-WY-sQu" secondAttribute="bottom" id="ngz-xY-hiZ"/>
                                                 <constraint firstItem="l74-s9-kYe" firstAttribute="top" secondItem="2Uk-WP-bQ4" secondAttribute="bottom" constant="8" id="pLf-SV-fNC"/>
@@ -267,17 +264,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fgT-mz-OZ5">
-                                <rect key="frame" x="61" y="92" width="114" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <state key="normal" title="@davidkuchar">
-                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="lbH-bN-jX6" kind="push" identifier="onOpenProfile" id="lmH-Xy-BOG"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xhK-sj-4TW">
                                 <rect key="frame" x="16" y="72" width="50" height="50"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -292,6 +278,17 @@
                                 </state>
                                 <connections>
                                     <segue destination="lbH-bN-jX6" kind="push" identifier="onOpenProfile" id="9Tb-zP-Xpj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fgT-mz-OZ5">
+                                <rect key="frame" x="74" y="92" width="114" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="@davidkuchar">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="lbH-bN-jX6" kind="push" identifier="onOpenProfile" id="lmH-Xy-BOG"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -360,6 +357,32 @@
             </objects>
             <point key="canvasLocation" x="1903" y="366"/>
         </scene>
+        <!--Side Panel View Controller-->
+        <scene sceneID="B8r-a3-T0K">
+            <objects>
+                <viewController storyboardIdentifier="LeftPanelViewController" id="hFf-2n-Q8n" customClass="SidePanelViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rmn-UF-07U"/>
+                        <viewControllerLayoutGuide type="bottom" id="o7Q-Y0-rqN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Des-aa-xdI">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Left Panel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IFC-WW-bsv">
+                                <rect key="frame" x="139" y="273" width="77" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dcj-QW-fpr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-169" y="366"/>
+        </scene>
         <!--Container View Controller-->
         <scene sceneID="jfC-T2-ac1">
             <objects>
@@ -372,11 +395,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="gdm-gX-sIY" appends="YES" id="dtD-cc-4am"/>
+                        </connections>
                     </view>
+                    <connections>
+                        <outlet property="panGestureRecognizer" destination="gdm-gX-sIY" id="vjX-hJ-5hn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NHw-eM-9ha" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="gdm-gX-sIY">
+                    <connections>
+                        <action selector="onPanGesture:" destination="oCT-dj-R3j" id="OFN-pH-qEa"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="563" y="-301"/>
+            <point key="canvasLocation" x="200" y="366"/>
         </scene>
         <!--Tweet-->
         <scene sceneID="899-g8-yUp">
@@ -498,8 +533,8 @@
                                     <segue destination="lbH-bN-jX6" kind="push" identifier="onOpenProfile" id="PMG-Rr-TA8"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HnR-qb-HWw">
-                                <rect key="frame" x="61" y="119" width="114" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HnR-qb-HWw">
+                                <rect key="frame" x="74" y="119" width="114" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="@davidkuchar">
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -600,7 +635,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="kaz-yP-Kg1"/>
-        <segue reference="fFa-9v-9fy"/>
+        <segue reference="CWl-ff-2fH"/>
+        <segue reference="pBv-j6-svE"/>
     </inferredMetricsTieBreakers>
 </document>

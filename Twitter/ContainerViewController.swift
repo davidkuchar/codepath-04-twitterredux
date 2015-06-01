@@ -8,31 +8,38 @@
 
 import UIKit
 
+enum SlideOutState {
+    case Collapsed
+    case LeftPanelExpanded
+}
+
 class ContainerViewController: UIViewController {
 
+    var centerNavigationController: UINavigationController!
+    var currentState: SlideOutState = .Collapsed {
+        didSet {
+            let shouldShowShadow = currentState != .Collapsed
+            showShadowForCenterViewController(shouldShowShadow)
+        }
+    }
+    var leftViewController: SidePanelViewController?
+    let centerPanelExpandedOffset: CGFloat = 60
     
-//    var storyboard = UIStoryboard(name: "Main", bundle: nil)
-//    var navigationController: UINavigationController!
-//    var tweetsViewController: TweetsViewController!
+    @IBOutlet var panGestureRecognizer: UIPanGestureRecognizer!
+
+    var panOriginalCenter: CGPoint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
-//        tweetsViewController = storyboard.instantiateViewControllerWithIdentifier("TweetsViewController") as! TweetsViewController
-//        tweetsViewController.delegate = self
-//        
-        // wrap the centerViewController in a navigation controller, so we can push views to it
-        // and display bar button items in the navigation bar
-//        centerNavigationController = UINavigationController(rootViewController: tweetsViewController)
+        centerNavigationController = storyboard?.instantiateViewControllerWithIdentifier("NavigationController") as! UINavigationController
         
-        var navigationController = storyboard?.instantiateViewControllerWithIdentifier("NavigationController") as! UINavigationController
+        view.addSubview(centerNavigationController.view)
+        addChildViewController(centerNavigationController)
         
-        view.addSubview(navigationController.view)
-        addChildViewController(navigationController)
-        
-        navigationController.didMoveToParentViewController(self)
+        centerNavigationController.didMoveToParentViewController(self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,15 +47,82 @@ class ContainerViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func onPanGesture(sender: AnyObject) {
+        var point = panGestureRecognizer.locationInView(view)
+        var velocity = panGestureRecognizer.velocityInView(view)
+        
+        if panGestureRecognizer.state == UIGestureRecognizerState.Began {
+            panOriginalCenter = point
+        } else if panGestureRecognizer.state == UIGestureRecognizerState.Changed {
+            var translation_x = point.x - panOriginalCenter.x
+            if translation_x >= 0  {
+                centerNavigationController.view.frame.origin.x = translation_x
+            }
+        } else if panGestureRecognizer.state == UIGestureRecognizerState.Ended {
+            if velocity.x > 0 {
+                openLeftPanel()
+            } else {
+                closeLeftPanel()
+            }
+        }
     }
-    */
-
+    
+    func openLeftPanel() {
+        if currentState != .LeftPanelExpanded {
+            addLeftPanelViewController()
+            animateLeftPanel(shouldExpand: true)
+        }
+    }
+    
+    func closeLeftPanel() {
+        if currentState == .LeftPanelExpanded {
+            animateLeftPanel(shouldExpand: false)
+        } else if centerNavigationController.view.frame.origin.x > 0 {
+            centerNavigationController.view.frame.origin.x = 0
+        }
+    }
+    
+    func addLeftPanelViewController() {
+        if (leftViewController == nil) {
+            leftViewController = storyboard?.instantiateViewControllerWithIdentifier("LeftPanelViewController") as? SidePanelViewController
+            
+            addChildSidePanelController(leftViewController!)
+        }
+    }
+    
+    func addChildSidePanelController(sidePanelController: SidePanelViewController) {
+        view.insertSubview(sidePanelController.view, atIndex: 0)
+        
+        addChildViewController(sidePanelController)
+        sidePanelController.didMoveToParentViewController(self)
+    }
+    
+    func animateLeftPanel(#shouldExpand: Bool) {
+        if (shouldExpand) {
+            currentState = .LeftPanelExpanded
+            
+            animateCenterPanelXPosition(targetPosition: CGRectGetWidth(centerNavigationController.view.frame) - centerPanelExpandedOffset)
+        } else {
+            animateCenterPanelXPosition(targetPosition: 0) { finished in
+                self.currentState = .Collapsed
+                
+                self.leftViewController!.view.removeFromSuperview()
+                self.leftViewController = nil;
+            }
+        }
+    }
+    
+    func animateCenterPanelXPosition(#targetPosition: CGFloat, completion: ((Bool) -> Void)! = nil) {
+        UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: {
+            self.centerNavigationController.view.frame.origin.x = targetPosition
+            }, completion: completion)
+    }
+    
+    func showShadowForCenterViewController(shouldShowShadow: Bool) {
+        if (shouldShowShadow) {
+            centerNavigationController.view.layer.shadowOpacity = 0.8
+        } else {
+            centerNavigationController.view.layer.shadowOpacity = 0.0
+        }
+    }
 }
