@@ -67,7 +67,6 @@ class SidePanelViewController: UIViewController, UITableViewDataSource, UITableV
     }
 
     @IBAction func onTapMentions(sender: AnyObject) {
-        println("onTapMentions")
         delegate?.onMenuItemSelected?(self, menuItem: .Mentions)
     }
 }

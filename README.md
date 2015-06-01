@@ -18,7 +18,7 @@ This is a basic twitter app to read and compose tweets the [Twitter API](https:/
 - Owner ID
   23178363
 
-Time spent: `6:57`
+Time spent: `7:49`
 
 ### Features
 
@@ -34,8 +34,8 @@ Time spent: `6:57`
 - [x] Hamburger menu: Dragging anywhere in the view should reveal the menu.
 - [x] Hamburger menu: The menu should include links to your profile, the home timeline, and the mentions view.
 - [x] Hamburger menu: The menu can look similar to the LinkedIn menu below or feel free to take liberty with the UI.
-- [ ] Profile page: Contains the user header view
-- [ ] Profile page: Contains a section with the users basic stats: # tweets, # following, # followers
+- [x] Profile page: Contains the user header view
+- [x] Profile page: Contains a section with the users basic stats: # tweets, # following, # followers
 - [x] Home Timeline: Tapping on a user image should bring up that user's profile page
 
 #### Optional
