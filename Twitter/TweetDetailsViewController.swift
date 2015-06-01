@@ -14,12 +14,11 @@ class TweetDetailsViewController: UIViewController {
     @IBOutlet weak var retweetedLabel: UILabel!
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
-    @IBOutlet weak var userTwitterHandleLabel: UILabel!
     @IBOutlet weak var tweetMessageLabel: UILabel!
     @IBOutlet weak var dateTimeCreatedLabel: UILabel!
     @IBOutlet weak var numberOfRetweetsLabel: UILabel!
     @IBOutlet weak var numberOfFavoritesLabel: UILabel!
-    
+    @IBOutlet weak var usernameButton: UIButton!
     @IBOutlet weak var userImageTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var userNameTopConstraint: NSLayoutConstraint!
     
@@ -48,7 +47,7 @@ class TweetDetailsViewController: UIViewController {
                 userImage.setImageWithURL(NSURL(string: user.profileImageUrl!))
                 userNameLabel.text = user.name
                 if let userTwitterHandle = user.screenname {
-                    userTwitterHandleLabel.text = "@\(userTwitterHandle)"
+                    usernameButton.setTitle("@\(userTwitterHandle)", forState: UIControlState.Normal)
                 }
             }
             
@@ -96,6 +95,4 @@ class TweetDetailsViewController: UIViewController {
             }
         }
     }
-
-
 }

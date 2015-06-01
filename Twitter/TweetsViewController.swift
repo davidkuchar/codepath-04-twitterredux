@@ -81,6 +81,8 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
 //        var cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as! TweetCell
         
         self.performSegueWithIdentifier("tweetDetailSegue", sender: indexPath)
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
     }
     
     @IBAction func onLogout(sender: AnyObject) {

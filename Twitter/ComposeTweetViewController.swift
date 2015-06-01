@@ -12,7 +12,7 @@ class ComposeTweetViewController: UIViewController {
 
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
-    @IBOutlet weak var userTwitterHandleLabel: UILabel!
+    @IBOutlet weak var usernameButton: UIButton!
     @IBOutlet weak var tweetMessageTextView: UITextView!
     
     var replyToTweet: Tweet?
@@ -24,7 +24,7 @@ class ComposeTweetViewController: UIViewController {
         userImage.setImageWithURL(NSURL(string: User.currentUser!.profileImageUrl!))
         userNameLabel.text = User.currentUser!.name
         if let userTwitterHandle = User.currentUser!.screenname {
-            userTwitterHandleLabel.text = "@\(userTwitterHandle)"
+            usernameButton.setTitle("@\(userTwitterHandle)", forState: UIControlState.Normal)
         }
         
         if let replyToTwitterHandle = replyToTweet?.user?.screenname {

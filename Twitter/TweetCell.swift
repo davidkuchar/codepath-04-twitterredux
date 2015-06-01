@@ -14,42 +14,38 @@ import UIKit
 
 class TweetCell: UITableViewCell {
 
+    @IBOutlet weak var retweetImage: UIImageView!
     @IBOutlet weak var retweetedLabel: UILabel!
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
-    @IBOutlet weak var userTwitterHandleLabel: UILabel!
     @IBOutlet weak var timeSinceCreatedLabel: UILabel!
     @IBOutlet weak var tweetMessageLabel: UILabel!
-    
+    @IBOutlet weak var usernameButton: UIButton!
     @IBOutlet weak var userImageTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var userNameTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var userTwitterHandleTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var timeSinceCreatedTopConstraint: NSLayoutConstraint!
     
     weak var delegate: TweetCellDelegate?
     
     var tweet: Tweet! {
         didSet {
             if let retweetedByUser = tweet.retweetedByUser {
-                retweetedLabel.text = "\(retweetedByUser.name!) retweeted"
+                retweetImage.hidden = false
                 retweetedLabel.hidden = false
+                retweetedLabel.text = "\(retweetedByUser.name!) retweeted"
                 userImageTopConstraint.constant = 31
                 userNameTopConstraint.constant = 31
-                userTwitterHandleTopConstraint.constant = 31
-                timeSinceCreatedTopConstraint.constant = 31
             } else {
+                retweetImage.hidden = true
                 retweetedLabel.hidden = true
                 userImageTopConstraint.constant = 8
                 userNameTopConstraint.constant = 8
-                userTwitterHandleTopConstraint.constant = 8
-                timeSinceCreatedTopConstraint.constant = 8
             }
             
             if let user = tweet.user {
                 userImage.setImageWithURL(NSURL(string: user.profileImageUrl!))
                 userNameLabel.text = user.name
                 if let userTwitterHandle = user.screenname {
-                    userTwitterHandleLabel.text = "@\(userTwitterHandle)"
+                    usernameButton.setTitle("@\(userTwitterHandle)", forState: UIControlState.Normal)
                 }
             }
             
@@ -65,13 +61,13 @@ class TweetCell: UITableViewCell {
         userImage.layer.cornerRadius = 3
         userImage.clipsToBounds = true
         
-//        tweetMessageLabel.preferredMaxLayoutWidth = tweetMessageLabel.frame.size.width
+        tweetMessageLabel.preferredMaxLayoutWidth = tweetMessageLabel.frame.size.width
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
-//        tweetMessageLabel.preferredMaxLayoutWidth = tweetMessageLabel.frame.size.width
+        tweetMessageLabel.preferredMaxLayoutWidth = tweetMessageLabel.frame.size.width
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

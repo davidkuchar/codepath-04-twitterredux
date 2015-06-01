@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             println("Current user detected \(User.currentUser?.name)")
             
-            var nc = storyboard.instantiateViewControllerWithIdentifier("NavigationController") as! UINavigationController
+            var nc = storyboard.instantiateViewControllerWithIdentifier("ContainerViewController") as! ContainerViewController
                         
             window?.rootViewController = nc
         }
